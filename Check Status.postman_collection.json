@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "bebd0e56-e4cf-400b-a1a1-9322e42776f1",
+		"name": "Check Status",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22806328"
+	},
+	"item": [
+		{
+			"name": "200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dummy.restapiexample.com/api/v1/employees",
+					"protocol": "https",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"the endpoint returns the expected status code\", () => {",
+							"  // comma separate the valid response codes below",
+							"  const expectedStatusCodes = [200, 201];",
+							"",
+							"  pm.expect(pm.response.code).to.be.oneOf(",
+							"    expectedStatusCodes,",
+							"    `expected response status to be one of ${expectedStatusCodes} but got ${pm.response.code}.`",
+							"  );",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dummy.restapiexample.com/api/v1/employees",
+					"protocol": "https",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"the endpoint does not return unexpected status code\", () => {",
+							"  // change 404 to the response code you do not expect",
+							"  const expectedStatusCode = 404;",
+							"",
+							"  pm.response.to.not.have.status(expectedStatusCode);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dummy.restapiexample.com/api/v1/employees",
+					"protocol": "https",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "404 or 500",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"the endpoint does not return unexpected status codes\", () => {",
+							"  // comma separate the valid response codes below",
+							"  const unexpectedStatusCodes = [404, 500];",
+							"",
+							"  pm.expect(pm.response.code).to.not.be.oneOf(",
+							"    unexpectedStatusCodes,",
+							"    `did not expect response status to be one of ${unexpectedStatusCodes} but got ${pm.response.code}.`",
+							"  );",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dummy.restapiexample.com/api/v1/employees",
+					"protocol": "https",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "response time",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"API responds within the expected treshhold\", () => {",
+							"  // set the response time in milliseconds",
+							"  const expectedTimeInMilliseconds = 1000;",
+							"",
+							"  pm.expect(pm.response.responseTime).to.be.lessThan(",
+							"    expectedTimeInMilliseconds + 1,",
+							"    `The endpoint did not respond within ${expectedTimeInMilliseconds} ms. Response came in ${pm.response.responseTime} ms`",
+							"  );",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dummy.restapiexample.com/api/v1/employees",
+					"protocol": "https",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check field value in response",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"API response contains the expected fields\", () => {",
+							"  const response = pm.response.json();",
+							"",
+							"  // the line below checks value of the id field is 2 (number).",
+							"  pm.expect(response).to.have.property(\"id\", 2);",
+							"",
+							"  // the line below checks value of the name field is Morty Smith (string).",
+							"  pm.expect(response).to.have.property(\"name\", \"Morty Smith\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rickandmortyapi.com/api/character/2",
+					"protocol": "https",
+					"host": [
+						"rickandmortyapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"character",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
